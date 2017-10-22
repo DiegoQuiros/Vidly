@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
         private ApplicationDbContext _context;
+
         public CustomersController()
         {
             _context = new ApplicationDbContext();
@@ -22,13 +24,10 @@ namespace Vidly.Controllers
         }
 
         // GET: Customers/Index
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            var customers = new List<Customer>
-            {
-                new Customer { Id = 1, Name = "John Smith"},
-                new Customer { Id = 2, Name = "Mary Wiliams"}
-            };
+            //Eager loading: Include(c => c.MembershipType)
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             var viewModel = new ViewModels.CustomersViewModel
             {
@@ -40,15 +39,12 @@ namespace Vidly.Controllers
         [Route("Customers/Details/{id}")]
         public ActionResult Details(int id)
         {
-            if (id > 2)
+            var customer = _context.Customers.FirstOrDefault(c => c.Id == id);
+
+            if (customer == null)
                 return HttpNotFound();
 
-            var customer = new Customer { Id = id, Name = "" };
-            if (id == 1)
-                customer.Name = "John Smith";
-            else
-                customer.Name = "Mary Williams";
             return View(customer);
         }
-}
+    }
 }
