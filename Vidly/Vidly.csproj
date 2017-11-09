@@ -199,13 +199,14 @@
     <Compile Include="Migrations\201711091436128_AddedMoviesDbSet.Designer.cs">
       <DependentUpon>201711091436128_AddedMoviesDbSet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711091502061_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.cs" />
-    <Compile Include="Migrations\201711091502061_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.Designer.cs">
-      <DependentUpon>201711091502061_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.cs</DependentUpon>
+    <Compile Include="Migrations\201711091511423_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.cs" />
+    <Compile Include="Migrations\201711091511423_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.Designer.cs">
+      <DependentUpon>201711091511423_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genres.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -314,8 +315,8 @@
     <EmbeddedResource Include="Migrations\201711091436128_AddedMoviesDbSet.resx">
       <DependentUpon>201711091436128_AddedMoviesDbSet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711091502061_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.resx">
-      <DependentUpon>201711091502061_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711091511423_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.resx">
+      <DependentUpon>201711091511423_AddedMovieGenre_ReleaseDate_DateAdded_NumberInStock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

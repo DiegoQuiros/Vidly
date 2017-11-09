@@ -10,7 +10,7 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Genre { get; set; }
+        public Genres Genre { get; set; }
         [DisplayFormat(DataFormatString ="0:ddd MMM dd, yyyy")]
         public DateTime ReleaseDate { get; set; }
         [DisplayFormat(DataFormatString ="0:ddd MMM dd, yyyy")]
