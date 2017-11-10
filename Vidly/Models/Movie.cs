@@ -11,9 +11,11 @@ namespace Vidly.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public Genres Genre { get; set; }
-        [DisplayFormat(DataFormatString ="0:ddd MMM dd, yyyy")]
+        [DisplayFormat(DataFormatString ="{0:dddd, MMMM dd, yyyy}")]
+        [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
-        [DisplayFormat(DataFormatString ="0:ddd MMM dd, yyyy")]
+        [DisplayFormat(DataFormatString ="{0:dddd, MMMM dd, yyyy}")]
+        [Display(Name = "Date Added")]
         public DateTime DateAdded { get; set; }
         public byte NumberInStock { get; set; }
     }
