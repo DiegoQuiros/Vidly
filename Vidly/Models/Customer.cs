@@ -10,12 +10,13 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
 
-        [Required] // Name can't be null
+        [Required(ErrorMessage = "Please enter the customer's name.")] // Name can't be null
         [StringLength(255)]
         public string Name { get; set; }
 
         [DisplayFormat(DataFormatString ="{0:M/d/yyyy}")]
         [Display(Name = "Date of Birth")]
+        [Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }

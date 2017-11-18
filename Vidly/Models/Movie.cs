@@ -15,6 +15,7 @@ namespace Vidly.Models
         public Genres Genre { get; set; }
 
         [Display(Name = "Genre")]
+        [Required]
         public int GenreId { get; set; }
 
         [DisplayFormat(DataFormatString ="{0:dddd, MMMM dd, yyyy}")]
