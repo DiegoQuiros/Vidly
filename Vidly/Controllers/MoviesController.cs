@@ -40,7 +40,7 @@ namespace Vidly.Controllers
         [Route("Movies/Details/{id}")]
         public ActionResult Details(int id)
         {
-            var movie = _context.Movies.Include(x => x.Genre).FirstOrDefault(x => x.Id == id);
+            Movie movie = _context.Movies.Include(x => x.Genre).FirstOrDefault(x => x.Id == id);
 
             if (movie == null)
                 return HttpNotFound();
@@ -51,9 +51,8 @@ namespace Vidly.Controllers
 
         public ActionResult New()
         {
-            var viewModel = new MovieFormViewModel
+            MovieFormViewModel viewModel = new MovieFormViewModel()
             {
-                Movie = new Movie(),
                 Genres = _context.Genres.ToList()
             };
 
@@ -61,10 +60,21 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    MovieFormViewModel viewModel = new MovieFormViewModel(movie) 
+                    {
+                        Genres = _context.Genres.ToList()
+                    };
+
+                    return View("MovieForm", viewModel);
+                }
+
                 if (movie.Id == 0)
                 {
                     movie.DateAdded = DateTime.Now;
@@ -94,9 +104,8 @@ namespace Vidly.Controllers
             if (movieInDb == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel
+            MovieFormViewModel viewModel = new MovieFormViewModel(movieInDb)
             {
-                Movie = movieInDb,
                 Genres = _context.Genres.ToList()
             };
 
