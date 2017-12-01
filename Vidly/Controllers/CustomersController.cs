@@ -69,14 +69,7 @@ namespace Vidly.Controllers
         // GET: Customers/Index
         public ViewResult Index()
         {
-            //Eager loading: Include(c => c.MembershipType)
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            var viewModel = new ViewModels.CustomersViewModel
-            {
-                Customers = customers
-            };
-            return View(viewModel);
+            return View();
         }
 
         [Route("Customers/Details/{id}")]
