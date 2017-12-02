@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201712021416187_SeedUsers.Designer.cs">
       <DependentUpon>201712021416187_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712021459117_AddDrivingLicenseToApplicationUser.cs" />
+    <Compile Include="Migrations\201712021459117_AddDrivingLicenseToApplicationUser.Designer.cs">
+      <DependentUpon>201712021459117_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\DTOs\CustomerDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -566,6 +570,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712021416187_SeedUsers.resx">
       <DependentUpon>201712021416187_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712021459117_AddDrivingLicenseToApplicationUser.resx">
+      <DependentUpon>201712021459117_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
