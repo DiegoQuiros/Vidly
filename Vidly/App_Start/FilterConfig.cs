@@ -9,6 +9,7 @@ namespace Vidly
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new AuthorizeAttribute()); // restricts access to entire website. user must be logged in
+            filters.Add(new RequireHttpsAttribute()); // application end-points no longer available on http
         }
     }
 }

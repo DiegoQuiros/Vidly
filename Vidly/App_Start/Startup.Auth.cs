@@ -54,9 +54,12 @@ namespace Vidly
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "899400456892713",
+               appSecret: "889ea7681ad91ea455fe48d97def6ee1");
+            // Go to your app's dashboard in Facebook. Then Products -> Facebook Login -> Settings
+            // under Valid OAuth redirect URIs, enter your app's address: https://localhost:44300/
+
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
