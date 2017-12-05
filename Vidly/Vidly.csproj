@@ -205,6 +205,7 @@
     <Compile Include="Migrations\201712021459117_AddDrivingLicenseToApplicationUser.Designer.cs">
       <DependentUpon>201712021459117_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\DTOs\CustomerDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,8 +272,9 @@
     <Compile Include="Models\DTOs\GenreDTO.cs" />
     <Compile Include="Models\DTOs\MembershipTypeDTO.cs" />
     <Compile Include="Models\DTOs\MovieDTO.cs" />
+    <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Genres.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
