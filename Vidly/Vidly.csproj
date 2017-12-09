@@ -214,6 +214,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\CustomersController.cs" />
     <Compile Include="Controllers\API\MoviesController.cs" />
+    <Compile Include="Controllers\API\NewRentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -226,6 +227,14 @@
     <Compile Include="Migrations\201712021459117_AddDrivingLicenseToApplicationUser.cs" />
     <Compile Include="Migrations\201712021459117_AddDrivingLicenseToApplicationUser.Designer.cs">
       <DependentUpon>201712021459117_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712081359050_CreatedRental.cs" />
+    <Compile Include="Migrations\201712081359050_CreatedRental.Designer.cs">
+      <DependentUpon>201712081359050_CreatedRental.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712091445205_AddedMoviesNumberAvailable.cs" />
+    <Compile Include="Migrations\201712091445205_AddedMoviesNumberAvailable.Designer.cs">
+      <DependentUpon>201712091445205_AddedMoviesNumberAvailable.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\DTOs\CustomerDTO.cs" />
@@ -294,6 +303,7 @@
     <Compile Include="Models\DTOs\GenreDTO.cs" />
     <Compile Include="Models\DTOs\MembershipTypeDTO.cs" />
     <Compile Include="Models\DTOs\MovieDTO.cs" />
+    <Compile Include="Models\DTOs\NewRentalDTO.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Genres.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -301,6 +311,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -685,6 +696,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712021459117_AddDrivingLicenseToApplicationUser.resx">
       <DependentUpon>201712021459117_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712081359050_CreatedRental.resx">
+      <DependentUpon>201712081359050_CreatedRental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712091445205_AddedMoviesNumberAvailable.resx">
+      <DependentUpon>201712091445205_AddedMoviesNumberAvailable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
