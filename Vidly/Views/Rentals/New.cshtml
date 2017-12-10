@@ -28,49 +28,42 @@
                 movieIds: []
             };
 
-            var customers = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: {
-                    url: '/api/customers?query=%QUERY',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            $("#customer").typeahead({
-                minLength: 3,
-                highlight: true
-            }, {
-                name: "customers",
-                display: 'name',
-                source: customers
-            }).on("typeahead:select", function (e, customer) {
-                viewModel.customerId = customer.id;
-            });
-
-            var movies = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: {
-                    url: '/api/movies?query=%QUERY',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            $('#movie').typeahead({
-                minLength: 3,
-                highlight: true
-            }, {
-                name: 'movies',
-                display: 'name',
-                source: movies
-            }).on("typeahead:select", function (e, movie) {
-                $("#movies").append("<li>" + movie.name + "</li>");
-
-                $("#movie").typeahead("val", "");
-
-                viewModel.movieIds.push(movie.id);
-            });
+            TypeaheadSub(viewModel, CustomerSelected, "#customer", "customers", "customers");
+            TypeaheadSub(viewModel, MovieSelected, "#movie", "movies", "movies");
         });
+
+        function TypeaheadSub(viewModel, Sub, textBoxID, api, nameField) {
+            var entinties = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/' + api + '?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $(textBoxID).typeahead({
+                minLength: 3,
+                highlight: true
+            }, {
+                name: nameField,
+                display: 'name',
+                source: entinties
+            }).on("typeahead:select", function (e, entinty) {
+                Sub(entinty, viewModel);
+            });
+        }
+
+        function CustomerSelected(customer, viewModel) {
+            viewModel.customerId = customer.id;
+        }
+
+        function MovieSelected(movie, viewModel) {
+            $("#movies").append("<li>" + movie.name + "</li>");
+
+            $("#movie").typeahead("val", "");
+
+            viewModel.movieIds.push(movie.id);
+        }
     </script>
     }
