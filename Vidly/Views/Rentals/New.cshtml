@@ -4,7 +4,7 @@
 }
 
 <h2>New Rental Form</h2>
-<form>
+<form id="newRental">
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
@@ -38,7 +38,27 @@
 
             TypeaheadSub(viewModel, CustomerSelected, "#customer", "customers", "customers");
             TypeaheadSub(viewModel, MovieSelected, "#movie", "movies", "movies");
+
+            $("#newRental").submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "/api/newRentals",
+                    method: "POST",
+                    data: viewModel,
+                    success: NewRentalSuccess(),
+                    fail: NewRentalFail()
+                });
+            });
         });
+
+        function NewRentalSuccess() {
+            console.log("done");
+        }
+
+        function NewRentalFail() {
+
+        }
 
         function TypeaheadSub(viewModel, Sub, textBoxID, api, nameField) {
             var entinties = new Bloodhound({
