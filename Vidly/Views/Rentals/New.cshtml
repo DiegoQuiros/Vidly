@@ -35,7 +35,6 @@
     <script>
         $(document).ready(function () {
             var viewModel = {
-                customerId: 0,
                 movieIds: []
             };
 
@@ -51,7 +50,7 @@
                 return viewM.movieIds.length > 0;
             }, "Please select at least one movie.");
 
-            $("#newRental").validate({
+            var validator = $("#newRental").validate({
                 submitHandler: function () {
                     $.ajax({
                         url: "/api/newRentals",
@@ -59,6 +58,19 @@
                         data: viewModel
                     }).done(function () {
                         toastr.success("Rentals successfully recorded.");
+
+                        // Clear the form
+                        $("#customer").typeahead("val", "");
+                        $("#movie").typeahead("val", "");
+                        $("#movies").empty(); // clear <ul> <li> items
+
+                        // Clear View Model
+                        viewModel = {
+                            movieIds: []
+                        };
+
+                        // Reset form validation
+                        validator.resetForm();
                     }).fail(function () {
                         toastr.error("Something unexpected happened.");
                     });
