@@ -8,7 +8,7 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" type="text" value="" class="form-control" />
+            <input id="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
         </div>
     </div>
 
@@ -30,6 +30,8 @@
 
 @section scripts 
     {
+    @Scripts.Render("~/bundles/jqueryval")
+
     <script>
         $(document).ready(function () {
             var viewModel = {
@@ -39,28 +41,27 @@
             TypeaheadSub(viewModel, CustomerSelected, "#customer", "customers", "customers");
             TypeaheadSub(viewModel, MovieSelected, "#movie", "movies", "movies");
 
-            $("#newRental").submit(function (e) {
-                e.preventDefault();
+            $.validator.addMethod("validCustomer", function () {
+                // Make sure property exists and it's not equal to 0
+                return (viewModel.customerId && viewModel.customerId !== 0);
+            }, "Please select a valid customer."); // optional error message
 
-                $.ajax({
-                    url: "/api/newRentals",
-                    method: "POST",
-                    data: viewModel
-                }).done(function () {
-                    NewRentalSuccess();
-                }).fail(function () {
-                    NewRentalFail();
-                });
+            $("#newRental").validate({
+                submitHandler: function () {
+                    e.preventDefault();
+
+                    $.ajax({
+                        url: "/api/newRentals",
+                        method: "POST",
+                        data: viewModel
+                    }).done(function () {
+                        toastr.success("Rentals successfully recorded.");
+                    }).fail(function () {
+                        toastr.error("Something unexpected happened.");
+                    });
+                }
             });
         });
-
-        function NewRentalSuccess() {
-            toastr.success("Rentals successfully recorded.");
-        }
-
-        function NewRentalFail() {
-            toastr.error("Something unexpected happened.");
-        }
 
         function TypeaheadSub(viewModel, Sub, textBoxID, api, nameField) {
             var entinties = new Bloodhound({
