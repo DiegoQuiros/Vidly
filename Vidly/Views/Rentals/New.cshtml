@@ -8,14 +8,14 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
+            <input id="customer" name="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
         </div>
     </div>
 
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" type="text" value="" class="form-control" />
+            <input id="movie" name="movie" data-rule-atLeastOneMovieSelected="true" type="text" value="" class="form-control" />
         </div>
     </div>
 
@@ -35,6 +35,7 @@
     <script>
         $(document).ready(function () {
             var viewModel = {
+                customerId: 0,
                 movieIds: []
             };
 
@@ -46,10 +47,12 @@
                 return (viewModel.customerId && viewModel.customerId !== 0);
             }, "Please select a valid customer."); // optional error message
 
+            $.validator.addMethod("atLeastOneMovieSelected", function () {
+                return viewM.movieIds.length > 0;
+            }, "Please select at least one movie.");
+
             $("#newRental").validate({
                 submitHandler: function () {
-                    e.preventDefault();
-
                     $.ajax({
                         url: "/api/newRentals",
                         method: "POST",
@@ -59,6 +62,8 @@
                     }).fail(function () {
                         toastr.error("Something unexpected happened.");
                     });
+
+                    return false; // prevents the form from being submitted normally
                 }
             });
         });
