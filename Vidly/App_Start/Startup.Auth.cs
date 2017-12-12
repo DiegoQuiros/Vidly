@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Vidly.Models;
+using System.Configuration;
 
 namespace Vidly
 {
@@ -55,8 +56,8 @@ namespace Vidly
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "899400456892713",
-               appSecret: "889ea7681ad91ea455fe48d97def6ee1");
+               appId: ConfigurationManager.AppSettings["FacebookAppId"],
+               appSecret: ConfigurationManager.AppSettings["FacebookAppSecret"]);
             // Go to your app's dashboard in Facebook. Then Products -> Facebook Login -> Settings
             // under Valid OAuth redirect URIs, enter your app's address: https://localhost:44300/
 
